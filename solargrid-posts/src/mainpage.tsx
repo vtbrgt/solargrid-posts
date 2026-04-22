@@ -4,7 +4,7 @@ import type { Post } from "./types"
 
 export function PostsList() {
   const [posts, setPosts] = useState<Post[]>([])
-  const [comments, setComments] = useState<Comment[]>([])
+  const [comments, setComments] = useState<Record<number, Comment[]>>({})
   const [loading, setLoading] = useState(true)
   const [fetching, setFetching] = useState(false)
   const [openPostId, setOpenPostId] = useState<number | null>(null)
@@ -44,7 +44,7 @@ export function PostsList() {
 
     const [newPosts, newComments] = await Promise.all([
       postsRes.json() as Promise<Post[]>,
-      commentsRes.json() as Promise<Comment[]>,
+      commentsRes.json() as Promise<Record<number, Comment[]>>,
     ])
 
     await Promise.all([
