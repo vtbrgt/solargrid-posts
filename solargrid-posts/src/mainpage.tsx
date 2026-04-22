@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { supabase } from "./database/supabase"
-import type { Post } from "./types"
+import type { Post, Comment } from "./types"
 
 export function PostsList() {
   const [posts, setPosts] = useState<Post[]>([])
